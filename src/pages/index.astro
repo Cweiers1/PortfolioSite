@@ -1,11 +1,93 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import corkboard from '../assets/cork-board.png';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const skillGroups = [
+  { category: 'Frontend',              skills: ['JavaScript', 'React', 'Tailwind CSS', 'HTML & CSS'] },
+  { category: 'Backend & Data',        skills: ['Python', 'Node.js', 'REST APIs'] },
+  { category: 'Tooling & Automation',  skills: ['Power Automate', 'Office Scripts', 'GitHub'] },
+];
 ---
+<BaseLayout title="Portfolio — Cass">
 
-<Layout>
-	<Welcome />
-</Layout>
+  <!-- Hero -->
+  <section class="relative bg-dark-olive py-32 px-8 overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%)">
+    <div class="absolute inset-0 opacity-15" style={`background-image: url('${corkboard.src}'); background-repeat: repeat;`} aria-hidden="true"></div>
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <p class="text-amber text-xs tracking-widest uppercase mb-6">Comstock Park, MI</p>
+      <h1 class="text-7xl font-light tracking-wide text-warm-white mb-6 leading-tight" style="font-family: var(--font-display)">
+        Websites <span class="text-amber">&amp;</span> automations<br>
+        for West Michigan<br>
+        <em>businesses.</em>
+      </h1>
+      <p class="text-warm-white/65 text-lg mb-10 max-w-md leading-relaxed">
+        I help local businesses look professional online and replace the repetitive work that eats up your day.
+      </p>
+      <a
+        href="#projects"
+        class="inline-block bg-deep-rose hover:bg-deep-rose/85 text-warm-white text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
+      >
+        View My Work
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 px-8 max-w-5xl mx-auto">
+    <h2 class="text-4xl font-light tracking-wide text-near-black mb-10" style="font-family: var(--font-display)">About Me</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+      <!-- Photo with offset frame -->
+      <div class="flex justify-center sm:order-last">
+        <div class="relative w-52 h-52">
+          <div class="absolute inset-0 translate-x-3 translate-y-3 border-2 border-deep-rose rounded-lg"></div>
+          <div class="relative bg-dark-olive w-full h-full rounded-lg flex items-center justify-center text-warm-white/40 text-xs tracking-widest uppercase">
+            Photo
+          </div>
+        </div>
+      </div>
+      <!-- Bio with left accent -->
+      <div class="border-l-2 border-deep-rose pl-6">
+        <p class="text-near-black leading-relaxed">
+          I'm a web developer and automation engineer who loves building tools that save time
+          and solve real problems. I specialize in JavaScript, Python, and no-code platforms
+          like Zapier. What drives me is the intersection of clean interfaces and efficient,
+          automated workflows.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="relative pt-20 pb-20 px-8 w-full mx-auto bg-dark-olive overflow-hidden" style="clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%)">
+    <div class="absolute inset-0 opacity-15" style={`background-image: url('${corkboard.src}'); background-repeat: repeat;`} aria-hidden="true"></div>
+    <div class="relative z-10">
+    <h2 class="text-6xl font-light tracking-wide text-warm-white mb-8" style="font-family: var(--font-display)"><em>Projects</em></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <!-- TODO: replace with real projects -->
+      <ProjectCard name="Project Name" tags={['React', 'Node.js']} />
+      <ProjectCard name="Project Name" tags={['Python', 'Zapier']} />
+      <ProjectCard name="Project Name" tags={['HTML', 'CSS']} />
+    </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tools -->
+  <section class="py-16 px-8 max-w-5xl mx-auto">
+    <h2 class="text-4xl font-light tracking-wide text-near-black mb-10" style="font-family: var(--font-display)">Skills &amp; Tools</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+      {skillGroups.map(group => (
+        <div>
+          <p class="text-xs tracking-widest uppercase text-near-black/50 mb-3">{group.category}</p>
+          <div class="border-t border-deep-rose mb-5"></div>
+          <ul class="space-y-2">
+            {group.skills.map(skill => (
+              <li class="text-near-black">{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</BaseLayout>

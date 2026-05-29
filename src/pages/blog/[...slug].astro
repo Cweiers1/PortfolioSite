@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatted = post.data.pubDate.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const tagColors = [
+  'bg-deep-rose text-warm-white',
+  'bg-amber text-near-black',
+  'bg-dark-olive text-warm-white',
+  'bg-near-black text-warm-white',
+];
+---
+<BaseLayout title={post.data.title}>
+
+  <!-- Breadcrumb -->
+  <div class="px-8 py-3 border-b border-near-black/15">
+    <a href="/blog" class="text-deep-rose hover:text-deep-rose/75 text-sm font-medium transition-colors">
+      &lsaquo; Back to Blog
+    </a>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="max-w-5xl mx-auto px-8 py-10 flex gap-10">
+
+    <!-- Main content -->
+    <article class="flex-7 min-w-0">
+      <h1 class="text-2xl font-bold text-near-black mb-1">{post.data.title}</h1>
+      <p class="text-near-black/50 text-sm mb-8">{post.data.description}</p>
+      <div
+        class="text-near-black/80 leading-relaxed
+          [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-near-black
+          [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:text-near-black
+          [&_p]:mb-4
+          [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4
+          [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4
+          [&_li]:mb-1
+          [&_pre]:bg-near-black [&_pre]:rounded-lg [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-4
+          [&_code]:text-sm [&_code]:font-mono
+          [&_pre_code]:bg-transparent [&_pre_code]:text-warm-white
+          [&_:not(pre)>code]:bg-near-black/10 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:rounded
+          [&_table]:w-full [&_table]:border-collapse [&_table]:mb-4
+          [&_th]:border [&_th]:border-near-black/20 [&_th]:px-3 [&_th]:py-2 [&_th]:bg-near-black/5 [&_th]:text-left [&_th]:font-semibold
+          [&_td]:border [&_td]:border-near-black/20 [&_td]:px-3 [&_td]:py-2
+          [&_strong]:font-semibold [&_strong]:text-near-black
+          [&_a]:text-deep-rose [&_a]:underline [&_a]:hover:text-deep-rose/75"
+      >
+        <Content />
+      </div>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="flex-3 border-l border-near-black/15 pl-8 shrink-0 pt-1">
+      <p class="text-xs text-near-black/40 uppercase tracking-wide mb-1">Published</p>
+      <p class="font-semibold text-near-black text-base mb-6">{formatted}</p>
+      <hr class="border-near-black/15 mb-4" />
+      <p class="text-xs text-near-black/40 uppercase tracking-wide mb-3">Tags</p>
+      <div class="flex flex-wrap gap-2">
+        {post.data.tags.map((tag, i) => (
+          <span class={`${tagColors[i % tagColors.length]} px-3 py-1 rounded-full text-sm font-medium`}>
+            {tag}
+          </span>
+        ))}
+      </div>
+    </aside>
+
+  </div>
+
+</BaseLayout>

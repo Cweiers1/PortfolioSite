@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Contact">
+
+  <div class="max-w-2xl mx-auto px-8 py-16">
+    <h1 class="text-3xl font-bold text-near-black mb-2">Contact Me</h1>
+    <p class="text-near-black/50 mb-10">Tell me about what you're working on and I'll get back to you.</p>
+
+    <form method="POST" class="flex flex-col gap-6">
+
+      <div class="flex flex-col gap-1.5">
+        <label for="name" class="text-sm font-medium text-near-black">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Jane Smith"
+          class="border border-near-black/25 rounded-lg px-4 py-2.5 text-near-black bg-warm-white placeholder:text-near-black/35 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="phone" class="text-sm font-medium text-near-black">Phone</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="(555) 000-0000"
+          class="border border-near-black/25 rounded-lg px-4 py-2.5 text-near-black bg-warm-white placeholder:text-near-black/35 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="email" class="text-sm font-medium text-near-black">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="jane@example.com"
+          class="border border-near-black/25 rounded-lg px-4 py-2.5 text-near-black bg-warm-white placeholder:text-near-black/35 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="message" class="text-sm font-medium text-near-black">How can I help?</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="6"
+          placeholder="Describe the services you're looking for..."
+          class="border border-near-black/25 rounded-lg px-4 py-2.5 text-near-black bg-warm-white placeholder:text-near-black/35 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent resize-y"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="self-start bg-deep-rose hover:bg-deep-rose/90 text-warm-white font-medium px-6 py-2.5 rounded-lg transition-colors"
+      >
+        Send Message
+      </button>
+
+    </form>
+  </div>
+
+</BaseLayout>

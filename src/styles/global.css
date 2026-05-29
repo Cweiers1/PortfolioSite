@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@300..600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-warm-white: #F5F0E8;
+  --color-near-black: #2E2E1F;
+  --color-dark-olive: #4E4F28;
+  --color-deep-rose: #C4407A;
+  --color-amber: #E8A838;
+  --default-font-family: 'Inter', sans-serif;
+  --font-display: 'Cormorant Garamond', serif;
+  --bg-stripes: 'repeating-linear-gradient(45deg, var(--stripe-color) 0px, var(--stripe-color) 10px, transparent 10px, transparent 20px)',
+
+}
+
+@utility bg-stripes-* {
+  background-image: repeating-linear-gradient(
+    45deg,
+    --value(--color-*) 8px,
+    --value(--color-*) 10px,
+    transparent 10px,
+    transparent 30px
+  );
+}

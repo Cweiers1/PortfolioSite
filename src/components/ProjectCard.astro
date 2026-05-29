@@ -1,0 +1,23 @@
+---
+interface Props {
+  name: string;
+  tags: string[];
+  href?: string;
+}
+
+const { name, tags, href = '#' } = Astro.props;
+---
+<a href={href} class="bg-warm-white/75 rounded-xl p-4 flex flex-col gap-3 hover:shadow-md transition-shadow">
+  <!-- TODO: replace with a real screenshot/preview image -->
+  <div class="bg-dark-olive rounded-lg h-32 flex items-center justify-center text-warm-white text-sm font-medium">
+    Screenshot
+  </div>
+  <p class="font-bold text-near-black">{name}</p>
+  <div class="flex flex-wrap gap-1.5">
+    {tags.map(tag => (
+      <span class="bg-warm-white border border-near-black/20 text-near-black text-xs px-2.5 py-0.5 rounded-full">
+        {tag}
+      </span>
+    ))}
+  </div>
+</a>
