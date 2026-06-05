@@ -3,14 +3,29 @@ interface Props {
   name: string;
   tags: string[];
   href?: string;
+  icon?: string;
 }
 
-const { name, tags, href = '#' } = Astro.props;
+const { name, tags, href = '#', icon } = Astro.props;
+
+const iconColorMap: Record<string, string> = {
+  '{ }': 'bg-dark-olive text-warm-white',
+  'UI':  'bg-near-black text-warm-white',
+  '>_':  'bg-deep-rose text-warm-white',
+  'JS':  'bg-amber text-near-black',
+  'API': 'bg-deep-rose text-warm-white',
+};
+const previewClass = icon
+  ? (iconColorMap[icon] ?? 'bg-near-black text-warm-white')
+  : 'bg-dark-olive text-warm-white';
 ---
 <a href={href} class="bg-warm-white/75 rounded-xl p-4 flex flex-col gap-3 hover:shadow-md transition-shadow">
-  <!-- TODO: replace with a real screenshot/preview image -->
-  <div class="bg-dark-olive rounded-lg h-32 flex items-center justify-center text-warm-white text-sm font-medium">
-    Screenshot
+  <div class={`${previewClass} rounded-lg h-32 flex items-center justify-center`}>
+    {icon ? (
+      <span class="text-4xl font-mono">{icon}</span>
+    ) : (
+      <span class="text-sm font-medium">Screenshot</span>
+    )}
   </div>
   <p class="font-bold text-near-black">{name}</p>
   <div class="flex flex-wrap gap-1.5">

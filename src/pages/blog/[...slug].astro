@@ -40,11 +40,30 @@ const tagColors = [
 
     <!-- Main content -->
     <article class="flex-7 min-w-0">
-      <h1 class="text-2xl font-bold text-near-black mb-1">{post.data.title}</h1>
+
+      <!-- Mobile metadata bar: date + tags in a row (hidden on sm+) -->
+      <div class="flex flex-wrap items-start gap-x-8 gap-y-3 mb-8 sm:hidden">
+        <div>
+          <p class="text-xs text-near-black/40 uppercase tracking-wide mb-1">Published</p>
+          <p class="font-medium text-near-black text-sm">{formatted}</p>
+        </div>
+        <div>
+          <p class="text-xs text-near-black/40 uppercase tracking-wide mb-2">Tags</p>
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag, i) => (
+              <span class={`${tagColors[i % tagColors.length]} px-3 py-1 rounded-full text-xs font-medium`}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <h1 class="text-3xl font-light tracking-wide text-near-black mb-1" style="font-family: var(--font-display)">{post.data.title}</h1>
       <p class="text-near-black/50 text-sm mb-8">{post.data.description}</p>
       <div
         class="text-near-black/80 leading-relaxed
-          [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-near-black
+          [&_h2]:text-xl [&_h2]:font-light [&_h2]:tracking-wide [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-near-black
           [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:text-near-black
           [&_p]:mb-4
           [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4
@@ -64,10 +83,10 @@ const tagColors = [
       </div>
     </article>
 
-    <!-- Sidebar -->
-    <aside class="flex-3 border-l border-near-black/15 pl-8 shrink-0 pt-1">
+    <!-- Sidebar (desktop only) -->
+    <aside class="hidden sm:block flex-3 border-l border-near-black/15 pl-8 shrink-0 pt-1">
       <p class="text-xs text-near-black/40 uppercase tracking-wide mb-1">Published</p>
-      <p class="font-semibold text-near-black text-base mb-6">{formatted}</p>
+      <p class="font-medium text-near-black text-base mb-6">{formatted}</p>
       <hr class="border-near-black/15 mb-4" />
       <p class="text-xs text-near-black/40 uppercase tracking-wide mb-3">Tags</p>
       <div class="flex flex-wrap gap-2">

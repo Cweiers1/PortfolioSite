@@ -5,11 +5,11 @@ import corkboard from '../assets/cork-board.png';
 
 const skillGroups = [
   { category: 'Frontend',              skills: ['JavaScript', 'React', 'Tailwind CSS', 'HTML & CSS'] },
-  { category: 'Backend & Data',        skills: ['Python', 'Node.js', 'REST APIs'] },
+  { category: 'Backend & Data',        skills: ['TypeScript', 'Node.js', 'REST APIs'] },
   { category: 'Tooling & Automation',  skills: ['Power Automate', 'Office Scripts', 'GitHub'] },
 ];
 ---
-<BaseLayout title="Portfolio — Cass">
+<BaseLayout title="Cass's Portfolio">
 
   <!-- Hero -->
   <section class="relative bg-dark-olive py-32 px-8 overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%)">
@@ -19,16 +19,16 @@ const skillGroups = [
       <h1 class="text-7xl font-light tracking-wide text-warm-white mb-6 leading-tight" style="font-family: var(--font-display)">
         Websites <span class="text-amber">&amp;</span> automations<br>
         for West Michigan<br>
-        <em>businesses.</em>
+        <em>creatives.</em>
       </h1>
       <p class="text-warm-white/65 text-lg mb-10 max-w-md leading-relaxed">
         I help local businesses look professional online and replace the repetitive work that eats up your day.
       </p>
       <a
-        href="#projects"
+        href="/contact"
         class="inline-block bg-deep-rose hover:bg-deep-rose/85 text-warm-white text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
       >
-        View My Work
+        Let's go
       </a>
     </div>
   </section>
@@ -39,10 +39,10 @@ const skillGroups = [
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
       <!-- Photo with offset frame -->
       <div class="flex justify-center sm:order-last">
-        <div class="relative w-52 h-52">
+        <div class="relative w-64 h-64">
           <div class="absolute inset-0 translate-x-3 translate-y-3 border-2 border-deep-rose rounded-lg"></div>
           <div class="relative bg-dark-olive w-full h-full rounded-lg flex items-center justify-center text-warm-white/40 text-xs tracking-widest uppercase">
-            Photo
+            <img src="/profile.jpg" alt="Cass's profile photo" class="rounded-lg object-cover w-full h-full" />   
           </div>
         </div>
       </div>
@@ -50,8 +50,8 @@ const skillGroups = [
       <div class="border-l-2 border-deep-rose pl-6">
         <p class="text-near-black leading-relaxed">
           I'm a web developer and automation engineer who loves building tools that save time
-          and solve real problems. I specialize in JavaScript, Python, and no-code platforms
-          like Zapier. What drives me is the intersection of clean interfaces and efficient,
+          and solve real problems. I specialize in JavaScript, Data scraping, and low-code platforms
+          like Power Automate. What drives me is the intersection of clean interfaces and efficient,
           automated workflows.
         </p>
       </div>
@@ -64,10 +64,19 @@ const skillGroups = [
     <div class="relative z-10">
     <h2 class="text-6xl font-light tracking-wide text-warm-white mb-8" style="font-family: var(--font-display)"><em>Projects</em></h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <!-- TODO: replace with real projects -->
       <ProjectCard name="Project Name" tags={['React', 'Node.js']} />
-      <ProjectCard name="Project Name" tags={['Python', 'Zapier']} />
-      <ProjectCard name="Project Name" tags={['HTML', 'CSS']} />
+      <ProjectCard
+        name="Automating My Quarterly Gym Reimbursement"
+        tags={['Azure Functions', 'Automation']}
+        href="/blog/automating-my-quarterly-gym-reimbursement"
+        icon="{ }"
+      />
+      <ProjectCard
+        name="Packaging a Codebase for Copilot"
+        tags={['Node.js', 'CLI']}
+        href="/blog/packaging-codebases-for-copilot"
+        icon=">_"
+      />
     </div>
     </div>
   </section>
