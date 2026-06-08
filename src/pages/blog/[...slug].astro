@@ -26,7 +26,7 @@ const tagColors = [
   'bg-near-black text-warm-white',
 ];
 ---
-<BaseLayout title={post.data.title}>
+<BaseLayout title={post.data.title} description={post.data.description}>
 
   <!-- Breadcrumb -->
   <div class="px-8 py-3 border-b border-near-black/15">
@@ -39,7 +39,7 @@ const tagColors = [
   <div class="max-w-5xl mx-auto px-8 py-10 flex gap-10">
 
     <!-- Main content -->
-    <article class="flex-7 min-w-0">
+    <article class="flex-7 min-w-0" aria-labelledby="post-title">
 
       <!-- Mobile metadata bar: date + tags in a row (hidden on sm+) -->
       <div class="flex flex-wrap items-start gap-x-8 gap-y-3 mb-8 sm:hidden">
@@ -59,7 +59,7 @@ const tagColors = [
         </div>
       </div>
 
-      <h1 class="text-3xl font-light tracking-wide text-near-black mb-1" style="font-family: var(--font-display)">{post.data.title}</h1>
+      <h1 id="post-title" class="text-3xl font-light tracking-wide text-near-black mb-1" style="font-family: var(--font-display)">{post.data.title}</h1>
       <p class="text-near-black/50 text-sm mb-8">{post.data.description}</p>
       <div
         class="text-near-black/80 leading-relaxed

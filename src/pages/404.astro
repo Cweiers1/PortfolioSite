@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import corkboard from '../assets/cork-board.png';
+---
+<BaseLayout
+  title="Page Not Found"
+  description="This page doesn't exist. Head back to cassweiers.dev to find what you're looking for."
+>
+  <section class="relative bg-dark-olive flex-1 flex items-center justify-center py-32 px-8 overflow-hidden min-h-[70vh]">
+    <div class="absolute inset-0 opacity-15" style={`background-image: url('${corkboard.src}'); background-repeat: repeat;`} aria-hidden="true"></div>
+    <div class="relative z-10 text-center max-w-lg mx-auto">
+      <p class="text-amber text-xs tracking-widest uppercase mb-4">Error 404</p>
+      <h1 class="text-9xl font-light tracking-wide text-warm-white leading-none mb-6" style="font-family: var(--font-display)">
+        <em>Oops.</em>
+      </h1>
+      <p class="text-warm-white/65 text-lg mb-10 leading-relaxed">
+        That page doesn't exist — it may have moved or never been here to begin with.
+      </p>
+      <a
+        href="/"
+        class="inline-block bg-deep-rose hover:bg-deep-rose/85 text-warm-white text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+</BaseLayout>

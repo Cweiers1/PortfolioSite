@@ -9,26 +9,29 @@ const skillGroups = [
   { category: 'Tooling & Automation',  skills: ['Power Automate', 'Office Scripts', 'GitHub'] },
 ];
 ---
-<BaseLayout title="Cass's Portfolio">
+<BaseLayout
+  title="Cass Weiers"
+  description="Web developer and automation engineer based in Comstock Park, MI. I help West Michigan creatives and local businesses look professional online and replace repetitive work with smart automations."
+>
 
   <!-- Hero -->
   <section class="relative bg-dark-olive py-32 px-8 overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%)">
     <div class="absolute inset-0 opacity-15" style={`background-image: url('${corkboard.src}'); background-repeat: repeat;`} aria-hidden="true"></div>
-    <div class="relative z-10 max-w-5xl sm:max-w-3xl mx-auto">
+    <div class="relative z-10 sm:max-w-5xl max-w-3xl mx-auto">
       <p class="text-amber text-xs tracking-widest uppercase mb-6">Comstock Park, MI</p>
-      <h1 class="text-7xl font-light tracking-wide text-warm-white mb-6 leading-tight" style="font-family: var(--font-display)">
+      <h1 class="text-[clamp(2.25rem,10vw,4.5rem)] font-light tracking-wide text-warm-white mb-6 leading-tight" style="font-family: var(--font-display)">
         Websites <span class="text-amber">&amp;</span> automations<br>
         for West Michigan<br>
         <em>creatives.</em>
       </h1>
-      <p class="text-warm-white/65 text-lg mb-10 max-w-md leading-relaxed">
+      <p class="text-warm-white/85 text-lg mb-10 max-w-md leading-relaxed">
         I help local businesses look professional online and replace the repetitive work that eats up your day.
       </p>
       <a
         href="/contact"
         class="inline-block bg-deep-rose hover:bg-deep-rose/85 text-warm-white text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
       >
-        Let's go
+        Work with me
       </a>
     </div>
   </section>

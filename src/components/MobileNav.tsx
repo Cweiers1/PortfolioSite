@@ -39,6 +39,7 @@ export default function MobileNav() {
           className="sm:hidden text-warm-white p-2 -mr-2 rounded transition-all duration-150 active:scale-90 active:bg-warm-white/10"
           aria-label="Toggle navigation"
           aria-expanded={isOpen}
+          aria-controls="mobile-nav-menu"
         >
           {isOpen ? (
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -52,26 +53,28 @@ export default function MobileNav() {
         </button>
       </div>
 
-      {/* Mobile dropdown — animates via max-height + opacity */}
+      {/* Mobile dropdown — outer div is clip/animation shell only */}
       <div
+        id="mobile-nav-menu"
         className={[
-          'sm:hidden flex-col gap-1 border-t border-warm-white/10 px-6 py-4',
-          'overflow-hidden transition-[max-height,opacity] duration-200 ease-out',
+          'sm:hidden overflow-hidden transition-[max-height,opacity] duration-200 ease-out',
           isOpen
             ? 'max-h-48 opacity-100 pointer-events-auto'
             : 'max-h-0 opacity-0 pointer-events-none',
         ].join(' ')}
       >
-        {links.map(({ label, href }) => (
-          <a
-            key={href}
-            href={href}
-            onClick={close}
-            className="text-warm-white/80 hover:text-amber transition-colors text-sm font-medium py-2 block"
-          >
-            {label}
-          </a>
-        ))}
+        <div className="flex flex-col gap-1 border-t border-warm-white/10 px-6 py-4">
+          {links.map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              onClick={close}
+              className="text-warm-white/80 hover:text-amber transition-colors text-sm font-medium py-2 block"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </div>
 
     </nav>

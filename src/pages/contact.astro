@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import corkboard from '../assets/cork-board.png';
 ---
-<BaseLayout title="Contact">
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Cass Weiers to discuss your web development or automation project. Based in Comstock Park, MI — available for local and remote work."
+>
 
   <!-- Header banner -->
   <div class="relative bg-dark-olive py-12 px-8 text-center overflow-hidden">
@@ -26,6 +29,7 @@ import corkboard from '../assets/cork-board.png';
           id="name"
           name="name"
           required
+          autocomplete="name"
           placeholder="Jane Smith"
           class="border border-near-black/20 rounded-lg px-4 py-3 text-near-black bg-white placeholder:text-near-black/30 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent transition-shadow"
         />
@@ -37,6 +41,7 @@ import corkboard from '../assets/cork-board.png';
           type="tel"
           id="phone"
           name="phone"
+          autocomplete="tel"
           placeholder="(555) 000-0000"
           class="border border-near-black/20 rounded-lg px-4 py-3 text-near-black bg-white placeholder:text-near-black/30 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent transition-shadow"
         />
@@ -49,6 +54,7 @@ import corkboard from '../assets/cork-board.png';
           id="email"
           name="email"
           required
+          autocomplete="email"
           placeholder="jane@example.com"
           class="border border-near-black/20 rounded-lg px-4 py-3 text-near-black bg-white placeholder:text-near-black/30 focus:outline-none focus:ring-2 focus:ring-deep-rose focus:border-transparent transition-shadow"
         />
