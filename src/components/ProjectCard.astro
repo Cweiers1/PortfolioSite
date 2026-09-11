@@ -1,38 +1,21 @@
 ---
 interface Props {
   name: string;
-  tags: string[];
-  href?: string;
-  icon?: string;
+  description: string;
+  outcome: string;
+  tag: string;
 }
 
-const { name, tags, href = '#', icon } = Astro.props;
-
-const iconColorMap: Record<string, string> = {
-  '{ }': 'bg-dark-olive text-warm-white',
-  'UI':  'bg-near-black text-warm-white',
-  '>_':  'bg-deep-rose text-warm-white',
-  'JS':  'bg-amber text-near-black',
-  'API': 'bg-deep-rose text-warm-white',
-};
-const previewClass = icon
-  ? (iconColorMap[icon] ?? 'bg-near-black text-warm-white')
-  : 'bg-dark-olive text-warm-white';
+const { name, description, outcome, tag } = Astro.props;
 ---
-<a href={href} class="bg-warm-white/75 rounded-xl p-4 flex flex-col gap-3 hover:shadow-md transition-shadow">
-  <div class={`${previewClass} rounded-lg h-32 flex items-center justify-center`}>
-    {icon ? (
-      <span class="text-4xl font-mono">{icon}</span>
-    ) : (
-      <span class="text-sm font-medium">Screenshot</span>
-    )}
-  </div>
-  <p class="font-bold text-near-black">{name}</p>
-  <div class="flex flex-wrap gap-1.5">
-    {tags.map(tag => (
-      <span class="bg-warm-white border border-near-black/20 text-near-black text-xs px-2.5 py-0.5 rounded-full">
-        {tag}
-      </span>
-    ))}
-  </div>
-</a>
+<article class="flex flex-col rounded-xl bg-warm-white p-6 pt-5 h-full">
+  <div class="w-10 border-t-2 border-amber mb-5" aria-hidden="true"></div>
+  <span class="self-start text-[0.65rem] tracking-widest uppercase text-dark-olive bg-dark-olive/10 px-2.5 py-0.5 rounded-full mb-3">
+    {tag}
+  </span>
+  <h3 class="font-semibold text-near-black text-base leading-snug mb-2">{name}</h3>
+  <p class="text-near-black/75 text-sm leading-relaxed mb-4">{description}</p>
+  <p class="text-near-black/55 text-sm leading-relaxed mt-auto">
+    <span class="text-dark-olive font-medium">Outcome:</span> {outcome}
+  </p>
+</article>
