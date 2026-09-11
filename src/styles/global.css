@@ -4,7 +4,7 @@
   --color-warm-white: #F5F0E8;
   --color-near-black: #2E2E1F;
   --color-dark-olive: #4E4F28;
-  --color-deep-rose: #C4407A;
+  --color-garnet: #8B1E3F;
   --color-amber: #E8A838;
   --default-font-family: 'Inter', sans-serif;
   --font-display: 'Cormorant Garamond', serif;
@@ -13,7 +13,7 @@
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-deep-rose);
+  outline: 2px solid var(--color-garnet);
   outline-offset: 2px;
   border-radius: 4px;
 }
