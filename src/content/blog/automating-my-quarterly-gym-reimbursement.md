@@ -12,7 +12,7 @@ The report lives in Daxko, the Y's membership platform. The old ritual was: log 
 
 So I built an Azure Function on a timer. It runs itself on the first of the quarter while I'm asleep. Below is how it works, including the parts that fought back.
 
-## The shape of the thing
+## How it's put together
 
 One timer-triggered Azure Function (v4, Node.js). The cron is what remembers for me:
 
@@ -167,7 +167,7 @@ Automation that fails quietly is worse than the chore. On any pipeline error I l
 ```js
 if (!isDryRun) {
   await sendFailureEmail({
-    subject: `YMCA Usage Report Failed – Q${quarter} ${year}`,
+    subject: `YMCA Usage Report Failed - Q${quarter} ${year}`,
     body: `Quarter: Q${quarter} ${year}\nError:\n${err.message}\n\nStack:\n${err.stack}`,
   });
 }
@@ -189,6 +189,6 @@ That let me prove most of the path on a Tuesday afternoon without junk files or 
 
 ## If this sounds like your week
 
-Same pattern shows up for West Michigan shops all the time: a recurring login-click-download-email job sitting in a system with no nice API. My [Simple Automation Sprint](/#services) is built for that — one or two Power Automate / Zapier-style flows (or a small function like this) plus a short how-to, fixed price.
+Same pattern shows up for West Michigan shops all the time: a recurring login-click-download-email job sitting in a system with no nice API. My [Simple Automation Sprint](/#services) is built for that - one or two Power Automate / Zapier-style flows (or a small function like this) plus a short how-to, fixed price.
 
 This function wakes up four times a year, does the chore I barely remember, and only pings me when something's wrong. That's the bar.

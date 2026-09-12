@@ -45,7 +45,7 @@ export default function MobileNav() {
           ))}
         </div>
 
-        {/* Hamburger button — mobile only */}
+        {/* Hamburger button - mobile only */}
         <button
           onClick={toggle}
           className="sm:hidden text-warm-white p-2 -mr-2 rounded transition-all duration-150 active:scale-90 active:bg-warm-white/10"
@@ -65,7 +65,7 @@ export default function MobileNav() {
         </button>
       </div>
 
-      {/* Mobile dropdown — outer div is clip/animation shell only */}
+      {/* Mobile dropdown - outer div is clip/animation shell only */}
       <div
         id="mobile-nav-menu"
         className={[

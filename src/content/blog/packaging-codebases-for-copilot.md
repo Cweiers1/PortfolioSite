@@ -1,7 +1,7 @@
 ---
-title: "Packaging a Whole Codebase for Copilot — Without Leaking It"
+title: "Packaging a Whole Codebase for Copilot - Without Leaking It"
 pubDate: 2026-05-29
-description: "A tiny Node CLI that packs a repo into one AI prompt while honoring .gitignore — so secrets stay out of the chat box."
+description: "A tiny Node CLI that packs a repo into one AI prompt while honoring .gitignore - so secrets stay out of the chat box."
 tags: ["Node.js", "CLI", "Automation"]
 icon: ">_"
 ---
@@ -50,4 +50,4 @@ Files over about 200 KB get skipped. Anything past 500 lines gets truncated with
 
 Roughly 230 lines, zero dependencies. It killed a daily annoyance and closed a real security gap. Small tools that fit how a team already works beat tools that ask everyone to change their habits.
 
-If your team is leaning on AI assistants and worrying about what lands in the paste box, this is the kind of thing I like putting on a portfolio — practical, careful, and short enough to read in one sitting.
+If your team is leaning on AI assistants and worrying about what lands in the paste box, this is the kind of thing I like putting on a portfolio - practical, careful, and short enough to read in one sitting.
