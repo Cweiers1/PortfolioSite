@@ -3,10 +3,11 @@ interface Props {
   title: string;
   date: Date;
   slug: string;
+  description?: string;
   icon?: string;
 }
 
-const { title, date, slug, icon = '?' } = Astro.props;
+const { title, date, slug, description, icon = '?' } = Astro.props;
 
 const formatted = date.toLocaleDateString('en-US', {
   month: 'short',
@@ -29,6 +30,9 @@ const iconClass = iconColorMap[icon] ?? 'bg-near-black/40 text-warm-white';
   </div>
   <div>
     <p class="font-semibold text-near-black text-base">{title}</p>
+    {description && (
+      <p class="text-near-black/60 text-sm mt-0.5 leading-snug">{description}</p>
+    )}
     <p class="text-near-black/50 text-sm mt-0.5">{formatted}</p>
   </div>
 </a>
