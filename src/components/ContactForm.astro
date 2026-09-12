@@ -1,0 +1,70 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const fieldClass =
+  'border border-near-black/20 rounded-lg px-4 py-3 text-near-black bg-white placeholder:text-near-black/30 focus:outline-none focus:ring-2 focus:ring-garnet focus:border-transparent transition-shadow';
+---
+<form action="https://api.web3forms.com/submit" method="POST" class:list={['flex flex-col gap-6', className]}>
+  <input type="hidden" name="access_key" value="bba078ab-2d16-4642-919f-a3cbb417aa89">
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+  <div class="flex flex-col gap-1.5">
+    <label for="name" class="text-xs font-medium tracking-widest uppercase text-near-black/50">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      autocomplete="name"
+      placeholder="Jane Smith"
+      class={fieldClass}
+    />
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    <label for="phone" class="text-xs font-medium tracking-widest uppercase text-near-black/50">Phone</label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      autocomplete="tel"
+      placeholder="(555) 000-0000"
+      class={fieldClass}
+    />
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    <label for="email" class="text-xs font-medium tracking-widest uppercase text-near-black/50">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="jane@example.com"
+      class={fieldClass}
+    />
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    <label for="message" class="text-xs font-medium tracking-widest uppercase text-near-black/50">How can I help?</label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="6"
+      placeholder="Describe the services you're looking for..."
+      class:list={[fieldClass, 'resize-y']}
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="self-start bg-garnet hover:bg-garnet/85 text-warm-white text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
+  >
+    Send Message
+  </button>
+</form>
