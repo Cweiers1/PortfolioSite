@@ -1,26 +1,20 @@
 ---
-title: "When the portal has no API: automating a quarterly report chore"
+title: "Automating My Quarterly Gym Reimbursement with Azure Functions"
 pubDate: 2026-05-29
-description: "Portal chore → timed PDF to SharePoint, with checks so a failed login can’t fake a “report.”"
+description: "Quarterly YMCA reimbursement via Daxko → Azure Function on a timer. Session/CSRF scrape, PDF magic-byte check, Graph upload, dry-run + failure email. Same shape as a Simple Automation Sprint."
 tags: ["Azure Functions", "Automation", "Node.js", "Web Scraping", "Microsoft Graph"]
 icon: "{ }"
 ---
 
-Plenty of local businesses still live inside portals with no API — membership systems, vendor sites, old ASP.NET apps. Here’s how I turned a forgettable quarterly “log in, pick dates, download PDF, file it” chore into a timer job that runs itself, validates the file, and only emails me when something breaks.
+My employer reimburses my YMCA membership if I prove I actually show up. Every quarter I grab a facility usage report, send it to work email, and hope I remembered. Miss the window and I eat the cost.
 
-## Who this is for
+The report lives in Daxko, the Y's membership platform. The old ritual was: log in, dig to Facility Usage Report, set last quarter's dates by hand, download the PDF, forward it. None of it is hard. All of it is forgettable. Forgettable work with a money penalty is the kind of thing I hand to a machine.
 
-West Michigan shops, studios, and nonprofits that still pull reports from a membership portal, vendor site, or leftover ASP.NET app. If someone on your team logs in on a calendar reminder, picks dates, downloads a file, and files it — and forgetting it actually costs money — this is that pattern.
-
-My own version lives at the YMCA. My employer reimburses the membership if I prove I show up. Every quarter I have to submit a facility usage report showing my check-ins, then send it to my work email. Miss the window and I eat the cost.
-
-The report itself lives inside Daxko, the platform the Y uses for membership management. So four times a year the ritual went: log into Daxko, dig through to the Facility Usage Report, set the date range to the previous quarter by hand, download the PDF, then send it along. None of it is hard. All of it is forgettable. And “forgettable but with a financial penalty” is exactly the kind of task I’d rather hand to a machine.
-
-So I built one. It’s an Azure Function on a timer that does the whole thing while I’m asleep on the first of the quarter. Here’s how it works, including the parts that fought back.
+So I built an Azure Function on a timer. It runs itself on the first of the quarter while I'm asleep. Below is how it works, including the parts that fought back.
 
 ## The shape of the thing
 
-The whole job is a single timer-triggered Azure Function (v4, Node.js). The cron expression is the part that does the remembering for me:
+One timer-triggered Azure Function (v4, Node.js). The cron is what remembers for me:
 
 ```js
 app.timer("QuarterlyTrigger", {
@@ -30,7 +24,7 @@ app.timer("QuarterlyTrigger", {
 });
 ```
 
-When it fires, the report I want is for the quarter that *just ended*, not the one starting. Computing that boundary is the kind of thing that’s easy to get subtly wrong — especially in January, where the previous quarter is in the previous year. I kept it UTC-safe so the function’s host here in EST can’t shift a date across a month boundary:
+When it fires, I need the quarter that just ended, not the one starting. January is the easy place to get that wrong (previous quarter is last year). I keep the math in UTC so the EST host can't nudge a date across a month boundary:
 
 ```js
 function getPreviousQuarterDates() {
@@ -49,15 +43,15 @@ function getPreviousQuarterDates() {
 }
 ```
 
-From there the handler is just 3 steps: log into Daxko, download the PDF, push it to my SharePoint. The interesting engineering is hiding inside each one.
+After that the handler is three steps: log into Daxko, download the PDF, put it in SharePoint.
 
-## Daxko has no API, so I had to act like a browser
+## Daxko has no API, so I act like a browser
 
-There’s no public API for the usage report, so the function logs in the same way I would in a browser — which means dealing with two things real browsers handle invisibly: cookies and an anti-CSRF token.
+No public API for the usage report. The function logs in the way I would in Chrome: cookies plus an anti-CSRF token.
 
-Daxko’s login is ASP.NET MVC, so the form ships a hidden `__RequestVerificationToken` that has to come back with the POST. You can’t hardcode it; it’s regenerated and tied to the session cookie. So the login is genuinely two requests: a GET to pick up the cookie and scrape the token out of the HTML, then a POST that sends both back.
+Daxko's login is ASP.NET MVC. The form ships a hidden `__RequestVerificationToken` that has to come back on the POST. You can't hardcode it; it regenerates and ties to the session cookie. Login is two requests: GET for cookie + token scrape, then POST with both.
 
-I used a cookie jar so the session persists across every request in the run, and `cheerio` to pull the token out of the page:
+I keep a cookie jar across the run and use `cheerio` for the token:
 
 ```js
 const cheerio = require("cheerio");
@@ -92,7 +86,7 @@ async function loginToDaxko() {
 }
 ```
 
-The cookie jar is the small piece that makes all of this hang together. `fetch` on its own is stateless, so I wrap it once and reuse that wrapped instance everywhere:
+Plain `fetch` is stateless, so I wrap it once:
 
 ```js
 const fetch = require("node-fetch");
@@ -105,13 +99,13 @@ const sessionFetch = fetchCookie(fetch, jar);
 module.exports = { sessionFetch, jar };
 ```
 
-Every later request — including the PDF download — goes through `sessionFetch`, so the authenticated cookie rides along automatically. No copy-pasting a session cookie that expires by next quarter.
+Every later request (including the PDF download) goes through `sessionFetch`. No expired session cookie pasted into a secret store.
 
-## Trust nothing: validate that a PDF is a PDF
+## Trust nothing: check that a PDF is a PDF
 
-Downloading the report is a POST to the report endpoint with the quarter’s date range. The catch with scraping a logged-in flow is the failure mode: when a session has quietly expired, the server doesn’t hand you an error code — it hands you a `200 OK` with an HTML login page. If you blindly save that, you’ve filed a webpage named `report.pdf` and you won’t find out until reimbursement season.
+Download is a POST with the quarter date range. The ugly failure mode: when the session dies quietly, the server still returns `200 OK` with an HTML login page. Save that blindly and you've filed a webpage named `report.pdf`. You find out at reimbursement time.
 
-So I check the file’s magic header before trusting it. A real PDF starts with the bytes `%PDF-`:
+A real PDF starts with `%PDF-`:
 
 ```js
 const buffer = Buffer.from(await response.arrayBuffer());
@@ -123,11 +117,11 @@ if (buffer.slice(0, 5).toString() !== "%PDF-") {
 }
 ```
 
-That five-byte check has caught any problem before it could turn into a corrupt upload. Cheap insurance.
+Five bytes. Cheap insurance.
 
 ## Filing it in SharePoint via Microsoft Graph
 
-My ‘personal’ SharePoint is Microsoft 365, so the upload goes through the Graph API using an app registration and client-credentials OAuth — no interactive sign-in, since I’m sure not signing in at 1am:
+Upload goes through Graph with an app registration and client-credentials OAuth. No interactive sign-in at 1am.
 
 ```js
 const res = await fetch(
@@ -145,7 +139,7 @@ const res = await fetch(
 );
 ```
 
-Reports are organized by year, so before uploading I make sure the year’s folder exists — GET the path, and if Graph returns a 404, create it. Then it’s a straight `PUT` of the PDF buffer to the destination path:
+Reports sit in year folders. GET the path; on 404, create it; then PUT the PDF:
 
 ```js
 async function ensureYearFolder(client, driveId, basePath, year, isDryRun) {
@@ -168,7 +162,7 @@ async function ensureYearFolder(client, driveId, basePath, year, isDryRun) {
 
 ## Silence is the enemy
 
-The whole point of automation is that I stop thinking about the task — which is dangerous, because if it fails silently I’m right back to discovering the problem at the worst possible moment. So the function is loud when it breaks. Any failure in the pipeline gets caught, logged with a full stack trace, and emailed to me through Graph’s `sendMail`:
+Automation that fails quietly is worse than the chore. On any pipeline error I log the stack and email myself through Graph `sendMail`:
 
 ```js
 if (!isDryRun) {
@@ -179,11 +173,11 @@ if (!isDryRun) {
 }
 ```
 
-I’d rather get an annoyed email in than a missed reimbursement.
+I'd rather get a cranky email than a missed reimbursement.
 
-## A dry-run switch so I can test without consequences
+## A dry-run switch
 
-You can’t exactly wait three months to find out if your quarterly job works. A `DRY_RUN` environment flag runs the entire pipeline for real — login, scrape, download, PDF validation, folder resolution, Graph validation — but stops short of the two side effects I don’t want during testing: it never writes to SharePoint and it never sends an alert email.
+You can't wait three months to learn the job is broken. `DRY_RUN=true` runs login, scrape, download, PDF check, and folder resolution, but skips SharePoint writes and alert mail.
 
 ```js
 const isDryRun = process.env.DRY_RUN === "true";
@@ -191,17 +185,10 @@ const isDryRun = process.env.DRY_RUN === "true";
 if (isDryRun) return; // skip the actual upload
 ```
 
-That let me prove the hard 90% works on demand, any day of the week, without leaving test files in my drives or spamming my inbox.
+That let me prove most of the path on a Tuesday afternoon without junk files or inbox spam.
 
-## When this pattern fits a business
+## If this sounds like your week
 
-This started as a personal chore, but the pattern is the same one I use for local shops and nonprofits: take a recurring manual process, find the seams in whatever system is already in place — even one with no API — and make it run itself reliably and visibly. The pieces here are the same ones I’d reach for on a paid engagement:
+Same pattern shows up for West Michigan shops all the time: a recurring login-click-download-email job sitting in a system with no nice API. My [Simple Automation Sprint](/#services) is built for that — one or two Power Automate / Zapier-style flows (or a small function like this) plus a short how-to, fixed price.
 
-- Scrape a legacy web app cleanly when there’s no API, including session and CSRF handling.
-- Validate inputs at the boundary instead of trusting that a `200` means success.
-- Authenticate service-to-service with OAuth client credentials so there’s no human in the loop.
-- Build in alerting and a dry-run mode from the start, because automation you can’t trust or test isn’t worth running.
-
-The result is a function I genuinely never think about. It wakes up four times a year, does the chore I hardly remember, and only ever speaks up if something’s wrong. That’s exactly how good automation should feel — invisible until you need it.
-
-If your team has a recurring portal or spreadsheet chore like this, that’s what [Simple Automation Sprint](/contact) ($850) is for — one or two flows, short how-to, fixed price.
+This function wakes up four times a year, does the chore I barely remember, and only pings me when something's wrong. That's the bar.
