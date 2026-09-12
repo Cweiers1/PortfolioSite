@@ -8,13 +8,19 @@ interface Props {
   description?: string;
 }
 
+const SITE_TITLE = 'Cass Weiers · Websites & automations for West Michigan';
+const SITE_DESCRIPTION = 'Fixed-price websites and simple automations for Grand Rapids–area small businesses and nonprofits. Based in Comstock Park.';
+
 const {
-  title = 'Cass Weiers',
-  description = 'Web developer and automation engineer based in Comstock Park, MI. I help local businesses look professional online and automate the repetitive work that eats up your day.',
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
 } = Astro.props;
 
-const fullTitle = title === 'Cass Weiers' ? title : `${title} | Cass Weiers`;
+const fullTitle = title === SITE_TITLE || title === 'Cass Weiers'
+  ? SITE_TITLE
+  : `${title} | Cass Weiers`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
 ---
 <!doctype html>
 <html lang="en" class="bg-near-black">
@@ -29,11 +35,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cass Weiers — Websites & automations for West Michigan" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Favicons — v3 option 2 spine-fan C -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
