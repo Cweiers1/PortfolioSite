@@ -5,7 +5,7 @@ const links: { label: string; href: string; cta?: boolean }[] = [
   { label: 'Projects',     href: '/#projects' },
   { label: 'Blog',         href: '/blog' },
   { label: 'Contact',      href: '/#contact' },
-  { label: 'Work with me', href: '/contact', cta: true },
+  { label: 'Work with me', href: '/#contact', cta: true },
 ];
 
 export default function MobileNav() {
@@ -31,14 +31,14 @@ export default function MobileNav() {
           {links.map(({ label, href, cta }) => (
             cta ? (
               <a
-                key={href}
+                key={label}
                 href={href}
                 className="bg-garnet hover:bg-garnet/85 text-warm-white px-4 py-1.5 rounded-lg transition-colors"
               >
                 {label}
               </a>
             ) : (
-              <a key={href} href={href} className="text-warm-white/80 hover:text-amber transition-colors">
+              <a key={label} href={href} className="text-warm-white/80 hover:text-amber transition-colors">
                 {label}
               </a>
             )
@@ -78,7 +78,7 @@ export default function MobileNav() {
         <div className="flex flex-col gap-1 border-t border-warm-white/10 px-6 py-4">
           {links.map(({ label, href, cta }) => (
             <a
-              key={href}
+              key={label}
               href={href}
               onClick={close}
               className={
