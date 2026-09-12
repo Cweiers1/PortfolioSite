@@ -7,18 +7,6 @@ interface Props {
 }
 
 const { name, description, outcome, tag } = Astro.props;
-const { name, tags, href = '#', icon } = Astro.props;
-
-const iconColorMap: Record<string, string> = {
-  '{ }': 'bg-dark-olive text-warm-white',
-  'UI':  'bg-near-black text-warm-white',
-  '>_':  'bg-garnet text-warm-white',
-  'JS':  'bg-amber text-near-black',
-  'API': 'bg-garnet text-warm-white',
-};
-const previewClass = icon
-  ? (iconColorMap[icon] ?? 'bg-near-black text-warm-white')
-  : 'bg-dark-olive text-warm-white';
 ---
 <article class="flex flex-col rounded-xl bg-warm-white p-6 pt-5 h-full">
   <div class="w-10 border-t-2 border-amber mb-5" aria-hidden="true"></div>
