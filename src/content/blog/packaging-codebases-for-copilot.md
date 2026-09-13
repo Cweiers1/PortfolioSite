@@ -1,31 +1,31 @@
 ---
-title: "Packaging a Whole Codebase for Copilot — Without Leaking It"
+title: "Packaging a Whole Codebase for Copilot - Without Leaking It"
 pubDate: 2026-05-29
-description: "A small Node.js CLI that turns an entire project into one AI-ready prompt, while respecting .gitignore so sensitive corporate logic never gets pasted into a chat box."
+description: "A tiny Node CLI that packs a repo into one AI prompt while honoring .gitignore - so secrets stay out of the chat box."
 tags: ["Node.js", "CLI", "Automation"]
 icon: ">_"
 ---
 
-AI coding assistants are great until you hit their blind spot: context. Copilot can see the file you're staring at, but it can't reason about how that file fits into the other forty around it. So you end up copy-pasting snippets one at a time, re-explaining the same architecture every conversation, and hoping the model guesses the rest.
+Copilot is fine on the file you're staring at. It's worse when the answer depends on the other forty files around it. So you paste snippets, re-explain the architecture every chat, and hope the model invents the rest.
 
-The obvious fix — paste the *whole* project — has two problems. It's tedious, and in a corporate environment it's dangerous. Drop the wrong folder into a chat window and you've just leaked credentials, internal business logic, or a client's proprietary code.
+Pasting the whole project sounds like the fix. Two problems: it's tedious, and at work it's risky. Wrong folder in a chat window means credentials, internal logic, or a client's code walking out the door.
 
-I built a small command-line tool to solve both at once.
+I wrote a small CLI that does both jobs at once.
 
 ## What it does
 
-It's a single Node.js script. Point it at a project directory and it produces one clean, AI-ready document: a visual file tree followed by the contents of every text file, wrapped in a prompt that tells the assistant to treat this as the *entire* project context.
+One Node.js script. Point it at a directory. Out comes a single document: a file tree, then every text file's contents, wrapped in a short prompt that says "treat this as the whole project."
 
 ```bash
 node copilot-context.js .            # Markdown output
 node copilot-context.js . --plaintext
 ```
 
-Now instead of dribbling out snippets, I hand the model the full picture in one paste — and the answers get noticeably sharper.
+One paste instead of a drip of snippets. Answers get sharper because the model can see how the pieces fit.
 
-## The part that actually matters: not leaking anything
+## The part that matters: not leaking anything
 
-The safety story is the whole point. The tool reads the project's own `.gitignore` and refuses to include anything it excludes. If your team already keeps secrets and proprietary modules out of version control — and you should — they're automatically kept out of the AI prompt too. No separate allowlist to maintain, no second config to forget to update.
+Safety is the point. The tool reads the project's own `.gitignore` and skips whatever git already excludes. If your team already keeps secrets and proprietary modules out of version control (you should), they stay out of the AI prompt too. No second allowlist to maintain and forget.
 
 ```js
 function isIgnored(filePath) {
@@ -40,12 +40,14 @@ function isIgnored(filePath) {
 }
 ```
 
-On top of `.gitignore`, it skips the usual noise (`node_modules`, `dist`, lockfiles) and only reads known text extensions, so binaries and build artifacts never sneak in.
+On top of that it skips noise (`node_modules`, `dist`, lockfiles) and only reads known text extensions, so binaries don't sneak in.
 
-## The guardrails
+## Guardrails
 
-A couple of limits keep the output sane. Files over ~200 KB are skipped, and anything past 500 lines gets truncated with a note about the real length. That keeps the prompt focused on the code worth reasoning about instead of blowing the model's context window on a giant generated file.
+Files over about 200 KB get skipped. Anything past 500 lines gets truncated with a note about the real length. That keeps the prompt on code worth reasoning about instead of stuffing the context window with a generated blob.
 
-## Why I like this kind of project
+## Why I built it
 
-It's maybe 230 lines, zero dependencies, and it removed a daily annoyance while quietly closing a real security gap. That's the sweet spot for automation work: small, sharp tools that fit how a team already works instead of asking them to change. If your team is leaning on AI assistants but worried about what's getting pasted where, this is exactly the kind of thing I build.
+Roughly 230 lines, zero dependencies. It killed a daily annoyance and closed a real security gap. Small tools that fit how a team already works beat tools that ask everyone to change their habits.
+
+If your team is leaning on AI assistants and worrying about what lands in the paste box, this is the kind of thing I like putting on a portfolio - practical, careful, and short enough to read in one sitting.
