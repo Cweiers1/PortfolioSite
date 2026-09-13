@@ -10,23 +10,28 @@ Websites & automations for West Michigan
 
 ## About
 
+<img src="public/profile.jpg" alt="Cass Weiers" width="180" align="right">
+
 I'm Cass Weiers, a web developer in Comstock Park, just outside Grand Rapids. This repo is the source for [cassweiers.dev](https://cassweiers.dev/), the public site for my local LLC.
 
 I build fixed-price websites and small automations for shops, studios, and nonprofits nearby. The work is practical: a page that looks right on a phone, a form that actually arrives, and fewer copy-paste chores between inboxes and spreadsheets.
 
-<img src="public/profile.jpg" alt="Cass Weiers" width="220">
+<br clear="all">
 
 ## Services
 
 These are the packages on the live site, including current prices.
 
-**Neighborhood Launch ($900)**  
+### Neighborhood Launch ($900)
+
 One-page site for a local service biz or event. Contact form, basic SEO, mobile-friendly, one revision, 14 days of small fixes after launch.
 
-**Steady Site Care ($125/mo)**  
+### Steady Site Care ($125/mo)
+
 Monthly updates, backup check, ~30-45 min content/edits.
 
-**Simple Automation Sprint ($850)**  
+### Simple Automation Sprint ($850)
+
 One or two Power Automate / Zapier-style flows + short how-to.
 
 ## Tech stack
