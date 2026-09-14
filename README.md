@@ -1,26 +1,26 @@
 # Cass Weiers
 
-Websites & automations for West Michigan
+Websites and simple automations for West Michigan businesses.
 
-[![Astro](https://img.shields.io/badge/Astro-6-FF5D01?logo=astro&logoColor=white)](https://astro.build)
+**[Live site](https://cassweiers.dev/)**
 
-**[Live site](https://cassweiers.dev/)** · [LinkedIn](https://www.linkedin.com/in/cass-weiers/) · [GitHub](https://github.com/Cweiers1)
+![Cass Weiers. Websites and simple automations for West Michigan](public/og.png)
 
-![Cass Weiers. Websites and automations for West Michigan](public/og.png)
+I help local shops, studios, and nonprofits look professional online and cut the busywork that eats the week. Based in Comstock Park, MI.
 
-## About
+## What I do
 
 <img src="public/profile.jpg" alt="Cass Weiers" width="180" align="right">
 
-I'm Cass Weiers, a web developer in Comstock Park, just outside Grand Rapids. This repo is the source for [cassweiers.dev](https://cassweiers.dev/), the public site for my local LLC.
+I'm a web developer in Comstock Park, just outside Grand Rapids. This repo is the source for [cassweiers.dev](https://cassweiers.dev/), the public site for my local LLC.
 
-I build fixed-price websites and small automations for shops, studios, and nonprofits nearby. The work is practical: a page that looks right on a phone, a form that actually arrives, and fewer copy-paste chores between inboxes and spreadsheets.
+I build fixed-price websites and small automations so West Michigan owners spend less time wrestling forms, spreadsheets, and "we'll update that later." You get a page that looks right on a phone, a form that actually arrives, and someone nearby who answers.
+
+Scope stays small on purpose: one page, or one or two simple flows, plus a short how-to.
 
 <br clear="all">
 
-## Services
-
-These are the packages on the live site, including current prices.
+## Packages
 
 ### Neighborhood Launch ($900)
 
@@ -28,35 +28,29 @@ One-page site for a local service biz or event. Contact form, basic SEO, mobile-
 
 ### Steady Site Care ($125/mo)
 
-Monthly updates, backup check, ~30-45 min content/edits.
+Monthly updates, backup check, ~30-45 min of content/edits.
 
 ### Simple Automation Sprint ($850)
 
-One or two Power Automate / Zapier-style flows + short how-to.
+One or two Power Automate / Zapier-style flows plus a short how-to (e.g. form to spreadsheet or email).
 
-## Tech stack
+Fixed price. Clear scope. No surprise invoices.
 
-| Piece | In this repo |
-| --- | --- |
-| **Astro** | 6 (`astro` ^6.3.8) |
-| **React 19** | `@astrojs/react` |
-| **Tailwind CSS 4** | `@tailwindcss/vite` |
-| **Sitemap** | `@astrojs/sitemap` |
-| **Node** | `>=22.12.0` |
-| **`site`** | `https://cassweiers.dev` in `astro.config.mjs` |
+## Who it's for
 
-## Local develop
+West Michigan small businesses and nonprofits. Local shops, studios, and organizations around Grand Rapids that need to look professional online, or to stop copying the same info between inboxes and spreadsheets.
 
-| Command | Script | What you get |
-| --- | --- | --- |
-| `npm run dev` | `astro dev` | Local server (usually `http://localhost:4321`) |
-| `npm run build` | `astro build` | Production build in `./dist/` |
-| `npm run preview` | `astro preview` | Serve that build locally |
-| `npm run astro` | `astro` | Astro CLI (`add`, `check`, `--help`, and so on) |
+If you want a custom app, a deep CRM build, or a long SEO campaign, that is not this list.
 
 ## Contact
 
-Questions about a site or a small automation: use the form on [cassweiers.dev](https://cassweiers.dev/#contact), or reach me on LinkedIn or GitHub.
-
+- Email: [Cass@Cassweiers.dev](mailto:Cass@Cassweiers.dev)
+- Site form: [cassweiers.dev/#contact](https://cassweiers.dev/#contact)
 - LinkedIn: [linkedin.com/in/cass-weiers](https://www.linkedin.com/in/cass-weiers/)
 - GitHub: [github.com/Cweiers1](https://github.com/Cweiers1)
+
+## Tech
+
+Astro 6, React, Tailwind CSS 4, `@astrojs/sitemap`. Node `>=22.12`. Site URL in `astro.config.mjs`: `https://cassweiers.dev`.
+
+Live site palette: olive `#4E4F28`, amber `#E8A838`, warm white `#F5F0E8`, near-black `#2E2E1F`, CTA garnet `#8B1E3F`.
