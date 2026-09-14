@@ -2,35 +2,29 @@
 
 Websites and simple automations for West Michigan businesses.
 
+Fixed-price sites and automations · Comstock Park / Grand Rapids
+
 **[Live site](https://cassweiers.dev/)**
-
-![Cass Weiers. Websites and simple automations for West Michigan](public/og.png)
-
-I help local shops, studios, and nonprofits look professional online and cut the busywork that eats the week. Based in Comstock Park, MI.
 
 ## What I do
 
-<img src="public/profile.jpg" alt="Cass Weiers" width="180" align="right">
+I help local shops, studios, and nonprofits look professional online and cut the busywork that eats the week. Based in Comstock Park, MI.
 
-I'm a web developer in Comstock Park, just outside Grand Rapids. This repo is the source for [cassweiers.dev](https://cassweiers.dev/), the public site for my local LLC.
+This repo is the source for [cassweiers.dev](https://cassweiers.dev/), the public site for my local LLC. I build fixed-price websites and small automations so West Michigan owners spend less time wrestling forms, spreadsheets, and "we'll update that later."
 
-I build fixed-price websites and small automations so West Michigan owners spend less time wrestling forms, spreadsheets, and "we'll update that later." You get a page that looks right on a phone, a form that actually arrives, and someone nearby who answers.
-
-Scope stays small on purpose: one page, or one or two simple flows, plus a short how-to.
-
-<br clear="all">
+You get a page that looks right on a phone, a form that actually arrives, and someone nearby who answers. Scope stays small on purpose: one page, or one or two simple flows, plus a short how-to.
 
 ## Packages
 
-### Neighborhood Launch ($900)
+### Neighborhood Launch - $900
 
 One-page site for a local service biz or event. Contact form, basic SEO, mobile-friendly, one revision, 14 days of small fixes after launch.
 
-### Steady Site Care ($125/mo)
+### Steady Site Care - $125/mo
 
 Monthly updates, backup check, ~30-45 min of content/edits.
 
-### Simple Automation Sprint ($850)
+### Simple Automation Sprint - $850
 
 One or two Power Automate / Zapier-style flows plus a short how-to (e.g. form to spreadsheet or email).
 
@@ -44,13 +38,20 @@ If you want a custom app, a deep CRM build, or a long SEO campaign, that is not 
 
 ## Contact
 
+- Site: [cassweiers.dev](https://cassweiers.dev/)
 - Email: [Cass@Cassweiers.dev](mailto:Cass@Cassweiers.dev)
-- Site form: [cassweiers.dev/#contact](https://cassweiers.dev/#contact)
+- Form: [cassweiers.dev/#contact](https://cassweiers.dev/#contact)
 - LinkedIn: [linkedin.com/in/cass-weiers](https://www.linkedin.com/in/cass-weiers/)
 - GitHub: [github.com/Cweiers1](https://github.com/Cweiers1)
 
 ## Tech
 
-Astro 6, React, Tailwind CSS 4, `@astrojs/sitemap`. Node `>=22.12`. Site URL in `astro.config.mjs`: `https://cassweiers.dev`.
+Astro 6, React, Tailwind CSS 4, `@astrojs/sitemap`. Node `>=22.12`.
 
 Live site palette: olive `#4E4F28`, amber `#E8A838`, warm white `#F5F0E8`, near-black `#2E2E1F`, CTA garnet `#8B1E3F`.
+
+## Screenshot
+
+Temporary stand-in (`public/og.png`) until a desktop crop of the live olive hero is added.
+
+![Cass Weiers. Websites and simple automations for West Michigan](public/og.png)
