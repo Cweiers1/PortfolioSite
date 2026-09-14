@@ -38,9 +38,8 @@ If you want a custom app, a deep CRM build, or a long SEO campaign, that is not 
 
 ## Contact
 
-- Site: [cassweiers.dev](https://cassweiers.dev/)
-- Email: [Cass@Cassweiers.dev](mailto:Cass@Cassweiers.dev)
-- Form: [cassweiers.dev/#contact](https://cassweiers.dev/#contact)
+Use the form on [cassweiers.dev/#contact](https://cassweiers.dev/#contact).
+
 - LinkedIn: [linkedin.com/in/cass-weiers](https://www.linkedin.com/in/cass-weiers/)
 - GitHub: [github.com/Cweiers1](https://github.com/Cweiers1)
 
@@ -52,6 +51,4 @@ Live site palette: olive `#4E4F28`, amber `#E8A838`, warm white `#F5F0E8`, near-
 
 ## Screenshot
 
-Temporary stand-in (`public/og.png`) until a desktop crop of the live olive hero is added.
-
-![Cass Weiers. Websites and simple automations for West Michigan](public/og.png)
+![Homepage hero on cassweiers.dev](docs/readme-hero.png)
