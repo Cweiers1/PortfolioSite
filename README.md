@@ -4,7 +4,7 @@ Websites & automations for West Michigan
 
 [![Astro](https://img.shields.io/badge/Astro-6-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 
-**[Live site](https://cassweiers.dev/)** · [Email](mailto:Cass@Cassweiers.dev) · [LinkedIn](https://www.linkedin.com/in/cass-weiers/)
+**[Live site](https://cassweiers.dev/)** · [Email](mailto:Cass@Cassweiers.dev) · [LinkedIn](https://www.linkedin.com/in/cass-weiers/) · [GitHub](https://github.com/Cweiers1)
 
 ![Cass Weiers. Websites and automations for West Michigan](public/og.png)
 
@@ -64,4 +64,8 @@ npm install
 
 ## Contact
 
-Questions about a site or a small automation: [Cass@Cassweiers.dev](mailto:Cass@Cassweiers.dev). You can also use the form on [cassweiers.dev](https://cassweiers.dev/#contact) or find me on [LinkedIn](https://www.linkedin.com/in/cass-weiers/).
+Questions about a site or a small automation: email me, use the form on [cassweiers.dev](https://cassweiers.dev/#contact), or reach me on LinkedIn or GitHub.
+
+- Email: [Cass@Cassweiers.dev](mailto:Cass@Cassweiers.dev)
+- LinkedIn: [linkedin.com/in/cass-weiers](https://www.linkedin.com/in/cass-weiers/)
+- GitHub: [github.com/Cweiers1](https://github.com/Cweiers1)
