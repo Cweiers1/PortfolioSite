@@ -4,7 +4,7 @@ Websites & automations for West Michigan
 
 [![Astro](https://img.shields.io/badge/Astro-6-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 
-**[Live site](https://cassweiers.dev/)** · [Email](mailto:Cass@Cassweiers.dev) · [LinkedIn](https://www.linkedin.com/in/cass-weiers/) · [GitHub](https://github.com/Cweiers1)
+**[Live site](https://cassweiers.dev/)** · [LinkedIn](https://www.linkedin.com/in/cass-weiers/) · [GitHub](https://github.com/Cweiers1)
 
 ![Cass Weiers. Websites and automations for West Michigan](public/og.png)
 
@@ -36,8 +36,6 @@ One or two Power Automate / Zapier-style flows + short how-to.
 
 ## Tech stack
 
-Taken from `package.json` and `astro.config.mjs`.
-
 | Piece | In this repo |
 | --- | --- |
 | **Astro** | 6 (`astro` ^6.3.8) |
@@ -49,12 +47,6 @@ Taken from `package.json` and `astro.config.mjs`.
 
 ## Local develop
 
-Node 22.12.0 or newer.
-
-```sh
-npm install
-```
-
 | Command | Script | What you get |
 | --- | --- | --- |
 | `npm run dev` | `astro dev` | Local server (usually `http://localhost:4321`) |
@@ -64,8 +56,7 @@ npm install
 
 ## Contact
 
-Questions about a site or a small automation: email me, use the form on [cassweiers.dev](https://cassweiers.dev/#contact), or reach me on LinkedIn or GitHub.
+Questions about a site or a small automation: use the form on [cassweiers.dev](https://cassweiers.dev/#contact), or reach me on LinkedIn or GitHub.
 
-- Email: [Cass@Cassweiers.dev](mailto:Cass@Cassweiers.dev)
 - LinkedIn: [linkedin.com/in/cass-weiers](https://www.linkedin.com/in/cass-weiers/)
 - GitHub: [github.com/Cweiers1](https://github.com/Cweiers1)
