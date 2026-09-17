@@ -6,14 +6,14 @@ import ContactForm from '../components/ContactForm.astro';
 import corkboard from '../assets/cork-board.png';
 
 const skillGroups = [
-  { category: 'Frontend',              skills: ['JavaScript', 'React', 'Tailwind CSS', 'HTML & CSS'] },
-  { category: 'Backend & Data',        skills: ['TypeScript', 'Node.js', 'REST APIs'] },
+  { category: 'Frontend',              skills: ['TypeScript', 'React', 'Tailwind CSS', 'Astro'] },
+  { category: 'Backend & Data',        skills: ['', 'Node.js', 'REST APIs'] },
   { category: 'Tooling & Automation',  skills: ['Power Automate', 'Office Scripts', 'GitHub'] },
 ];
 ---
 <BaseLayout
   title="Cass Weiers · Websites & automations for West Michigan"
-  description="Fixed-price websites and simple automations for Grand Rapids–area small businesses and nonprofits. Based in Comstock Park."
+  description="Fixed-price websites and simple automations for Grand Rapids-area small businesses and nonprofits. Based in Comstock Park."
 >
 
   <!-- Hero -->
@@ -25,7 +25,7 @@ const skillGroups = [
         Websites and automations for local businesses.
       </h1>
       <p class="text-warm-white/85 text-lg mb-10 max-w-xl leading-relaxed">
-        I help Grand Rapids–area shops, studios, and nonprofits look professional online — and cut the busywork that eats your week.
+        I help Grand Rapids-area shops, studios, and nonprofits look professional online — and cut the busywork that eats your week.
       </p>
       <div class="flex flex-wrap items-center gap-4">
         <a
@@ -33,12 +33,6 @@ const skillGroups = [
           class="inline-block bg-garnet hover:bg-garnet/85 text-warm-white text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
         >
           Work with me
-        </a>
-        <a
-          href="#services"
-          class="inline-block border border-warm-white/40 hover:border-amber text-warm-white hover:text-amber text-sm font-medium tracking-wide px-7 py-3 rounded-lg transition-colors"
-        >
-          See packages
         </a>
       </div>
     </div>
@@ -50,7 +44,7 @@ const skillGroups = [
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
       <!-- Photo with offset frame -->
       <div class="flex justify-center sm:order-last">
-        <div class="relative w-64 h-64">
+        <div class="relative w-72 h-72">
           <div class="absolute inset-0 translate-x-3 translate-y-3 border-2 border-garnet rounded-lg"></div>
           <div class="relative bg-dark-olive w-full h-full rounded-lg flex items-center justify-center text-warm-white/40 text-xs tracking-widest uppercase">
             <img src="/profile.jpg" alt="Cass's profile photo" class="rounded-lg object-cover w-full h-full" />
@@ -60,41 +54,15 @@ const skillGroups = [
       <!-- Bio with left accent -->
       <div class="border-l-2 border-garnet pl-6">
         <p class="text-near-black leading-relaxed">
-          I’m a web developer based in Comstock Park. I build clear, mobile-friendly sites and small automations so West Michigan owners spend less time wrestling forms, spreadsheets, and “we’ll update that later.” You get fixed-price packages, plain English, and someone nearby who actually answers.
+          I’m a web developer based in Comstock Park. I build clear, mobile-friendly sites and small automations so West Michigan owners spend less time wrestling with forms and spreadsheets.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Services + Skills -->
-  <section id="services" class="py-16 px-8 max-w-5xl mx-auto scroll-mt-20">
-    <h2 class="text-4xl font-light tracking-wide text-near-black mb-10" style="font-family: var(--font-display)">Services</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
-      <ServiceCard
-        name="Neighborhood Launch"
-        price="$900"
-        description="One-page site for a local service biz or event. Contact form, basic SEO, mobile-friendly, one revision, 14 days of small fixes after launch."
-        notIncluded="logo design, blog, booking systems, e-commerce"
-      />
-      <ServiceCard
-        name="Steady Site Care"
-        price="$125/mo"
-        description="Monthly updates, backup check, ~30–45 min of content/edits so the site doesn’t go stale."
-        notIncluded="redesigns, SEO campaigns, uptime SLA"
-      />
-      <ServiceCard
-        name="Simple Automation Sprint"
-        price="$850"
-        description="One or two Power Automate / Zapier-style flows plus a short how-to (e.g. form → spreadsheet or email)."
-        notIncluded="software licenses, deep CRM builds, RPA bots"
-      />
-    </div>
-    <p class="text-center text-near-black/55 text-sm tracking-wide mt-8">
-      Fixed price. Clear scope. No surprise invoices.
-    </p>
-
-    <h3 class="text-2xl font-light tracking-wide text-near-black mt-16 mb-8" style="font-family: var(--font-display)">Skills &amp; Tools</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+  <!-- Skills -->
+    <h3 class="text-2xl font-light tracking-wide text-near-black mt-16 m-8" style="font-family: var(--font-display)">Skills &amp; Tools</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-8">
       {skillGroups.map(group => (
         <div>
           <p class="text-[0.65rem] tracking-widest uppercase text-near-black/45 mb-3">{group.category}</p>
@@ -116,21 +84,21 @@ const skillGroups = [
       <h2 class="text-6xl font-light tracking-wide text-warm-white mb-8" style="font-family: var(--font-display)"><em>Projects</em></h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
         <ProjectCard
-          name="Local service site that books more calls"
-          description="One-page brochure: services, proof, contact form."
-          outcome="clearer pitch + easier “call us.”"
+          name="Automatic Quoting Tool"
+          description="Built a website to allow management control over the qouting process while empowering staff with quick turn around times and easy comparisons."
+          outcome="Easy management & quick quoting for customers."
           tag="Site"
         />
         <ProjectCard
-          name="Nonprofit events page people can share"
-          description="Public page for upcoming events and how to help."
-          outcome="fewer “what’s the link again?” texts."
-          tag="Nonprofit"
+          name="Automatic balance reporting for a local bank"
+          description="Using Power Automate and Excel Scripts to automate archival and report discrepancies."
+          outcome="No audit worries & hours saved every week."
+          tag="Automation"
         />
         <ProjectCard
-          name="Inbox → spreadsheet without the copy-paste"
-          description="Form/email → sheet or Teams + short how-to."
-          outcome="hours back each month."
+          name="Automating download & email of a .PDF from an external site"
+          description="Mimicked the login flow of my gyms member portal using Azure Functions to simplify reimbursement reporting."
+          outcome="Money saved & deadlines met."
           tag="Automation"
         />
       </div>
@@ -140,7 +108,7 @@ const skillGroups = [
   <!-- Trust band -->
   <section class="bg-near-black px-8 py-12 text-center" aria-label="Service area and turnaround">
     <p class="text-warm-white/80 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
-      Serving West Michigan from Comstock Park. Fixed-price packages from $900. Usually reply within 1–2 business days.
+      Serving West Michigan from here in Comstock Park. Usually reply within 1-2 business days.
     </p>
   </section>
 
@@ -148,7 +116,7 @@ const skillGroups = [
   <section id="contact" class="py-16 px-8 max-w-2xl mx-auto scroll-mt-20">
     <h2 class="text-4xl font-light tracking-wide text-near-black mb-4" style="font-family: var(--font-display)">Contact</h2>
     <p class="text-near-black/60 mb-10 leading-relaxed">
-      Tell me about what you’re working on and I’ll get back to you — usually within 1–2 business days.
+      Tell me about what you’re working on and I’ll get back to you — usually within 1-2 business days.
     </p>
     <ContactForm />
   </section>
