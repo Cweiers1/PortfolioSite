@@ -1,6 +1,6 @@
 ---
 title: "Automating My Quarterly Gym Reimbursement with Azure Functions"
-pubDate: 2026-05-29
+pubDate: 2026-08-14
 description: "My employer reimburses my YMCA membership if I prove I actually show up. Here's how I replaced the quarterly chore — login, menu navigation, date selection and PDF download — with a serverless function that runs itself."
 tags: ["Azure Functions", "Automation", "Node.js", "Web Scraping", "Microsoft Graph"]
 icon: "{ }"
