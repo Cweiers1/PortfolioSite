@@ -10,7 +10,7 @@ const posts = (await getCollection('blog')).sort(
 ---
 <BaseLayout
   title="Blog"
-  description="Writing on web development, automation, and working smarter — by Cass Weiers."
+  description="Writing on web development, automation, and working smarter - by Cass Weiers."
 >
 
   <!-- Header banner -->
@@ -28,6 +28,7 @@ const posts = (await getCollection('blog')).sort(
         title={post.data.title}
         date={post.data.pubDate}
         slug={post.id}
+        description={post.data.description}
         icon={post.data.icon}
       />
     ))}
